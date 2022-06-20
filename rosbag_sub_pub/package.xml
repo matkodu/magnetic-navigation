@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package>
+  <name>rosbag_sub_pub</name>
+  <version>0.0.0</version>
+  <description>Using rosbag to publish trajectory.</description>
+
+  <author email="matko.batos@fer.hr">Matko Batos</author>
+
+  <maintainer email="matko.batos@fer.hr">Matko Batos</maintainer>
+
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>std_msgs</build_depend>
+  <build_depend>sensor_msgs</build_depend>
+  <run_depend>sensor_msgs</run_depend>
+  <run_depend>std_msgs</run_depend>
+
+</package>

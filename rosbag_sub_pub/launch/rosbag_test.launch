@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+
+<launch>
+  
+ <node pkg="rosbag" type="play" name="play" output="screen" args="/home/matko01/mb_rosbag/uav_0_m.bag"/>
+  
+
+  <node name="robsag_sub_pub0" pkg="rosbag_sub_pub" type="rosbag_sub_pub" output="screen">
+    <param name="magnetometer_frame" type="str" value="/magnetometer0" />
+    <param name="magnetometer_topic" type="str" value="/magnetic1" />
+    <param name="magnetometer_sampling_frequency" type="double" value="200" />
+  </node>
+
+
+  <node name="rosbag_sub_pub1" pkg="rosbag_sub_pub" type="rosbag_sub_pub" output="screen">
+    <param name="magnetometer_frame" type="str" value="/magnetometer1" />
+    <param name="magnetometer_topic" type="str" value="/magnetic3" />
+    <param name="magnetometer_sampling_frequency" type="double" value="200" />
+  </node>
+
+</launch>

@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!--
+  Launch wit driver
+-->
+<launch>
+ <param name="use_sim_time" value="true"/> 
+  <arg name="power_line_x"  default="0.0"/>
+  <arg name="power_line_y"  default="0.0"/>
+  <arg name="power_line_yaw"  default="1.5708"/>
+
+  
+<!-- run node -->
+  <node name="power_line_simulation0" pkg="power_line_simulation" type="power_line_simulation" output="screen">
+    <param name="magnetometer_frame" type="str" value="/magnetometer0" />
+  </node>
+
+
+  <node name="power_line_simulation1" pkg="power_line_simulation" type="power_line_simulation" output="screen">
+    <param name="magnetometer_frame" type="str" value="/magnetometer1" />
+  </node>
+
+
+   <node pkg="tf" type="static_transform_publisher" name="wire_position1" args="$(arg power_line_x) $(arg power_line_y) 0.8 0 0 0 /base_link /power_line_ground_truth0 100"/> 
+   <include file="$(find gazebo_ros)/launch/empty_world.launch" />
+
+  <!-- Magnetometer Pose -->
+  <node pkg="tf" type="static_transform_publisher" name="magnetometer0_pose" args="0.11 -0.25 0 0 0 0 /base_link /magnetometer0 100"/> 
+  <!--node pkg="tf" type="static_transform_publisher" name="magnetometer1_pose" args="0.11 -0.25 0 1.5 0.2 0 /base_link /magnetometer1 100"/--> 
+  <node pkg="tf" type="static_transform_publisher" name="magnetometer1_pose" args="0.08 0.25 0 0 0 0 /base_link /magnetometer1 100"/> 
+
+</launch>

@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<!--
+  Launch wit driver
+-->
+<launch>
+  
+  <arg name="power_line_x"  default="0.1"/>
+  <arg name="power_line_y"  default="0.5"/>
+  <arg name="power_line_yaw"  default="1.5708"/>
+
+  <arg name="power_line_x_2"  default="0.1"/>
+  <arg name="power_line_y_2"  default="0.9"/>
+  <arg name="power_line_yaw_2"  default="1.5708"/>
+
+<!-- run node -->
+  <node name="power_line_simulation0" pkg="power_line_simulation" type="power_line_simulation" output="screen">
+    <param name="magnetometer_frame" type="str" value="/magnetometer0" />
+    <param name="magnetometer_topic" type="str" value="/imu_magnetic0" />
+    <param name="magnetometer_sampling_frequency" type="double" value="200" />
+    <rosparam param="simulated_power_line_frames">[power_line_ground_truth0,power_line_ground_truth1]</rosparam>
+    <rosparam param="simulated_power_line_currents">[50.0,50.0]</rosparam>
+    <rosparam param="simulated_power_line_frequencies">[0.0,0.0]</rosparam>
+  </node>
+
+  <node name="power_line_simulation1" pkg="power_line_simulation" type="power_line_simulation" output="screen">
+    <param name="magnetometer_frame" type="str" value="/magnetometer1" />
+    <param name="magnetometer_topic" type="str" value="/imu_magnetic1" />
+    <param name="magnetometer_sampling_frequency" type="double" value="200" />
+    <rosparam param="simulated_power_line_frames">[power_line_ground_truth0,power_line_ground_truth1]</rosparam>
+    <rosparam param="simulated_power_line_currents">[50.0,50.0]</rosparam>
+    <rosparam param="simulated_power_line_frequencies">[0.0,0.0]</rosparam>
+  </node>
+
+  <node name="power_line_simulation2" pkg="power_line_simulation" type="power_line_simulation" output="screen">
+    <param name="magnetometer_frame" type="str" value="/magnetometer2" />
+    <param name="magnetometer_topic" type="str" value="/imu_magnetic2" />
+    <param name="magnetometer_sampling_frequency" type="double" value="200" />
+    <rosparam param="simulated_power_line_frames">[power_line_ground_truth0,power_line_ground_truth1]</rosparam>
+    <rosparam param="simulated_power_line_currents">[50.0,50.0]</rosparam>
+    <rosparam param="simulated_power_line_frequencies">[0.0,0.0]</rosparam>
+  </node>
+
+
+  <node pkg="tf" type="static_transform_publisher" name="wire_position1" args="$(arg power_line_x) $(arg power_line_y) 0.8 0 0 1.5708 /base_link /power_line_ground_truth0 1000"/> 
+
+  <node pkg="tf" type="static_transform_publisher" name="wire_position2" args="$(arg power_line_x_2) $(arg power_line_y_2) 0.8 0 0 1.5708 /base_link /power_line_ground_truth1 1000"/> 
+
+    <include file="$(find gazebo_ros)/launch/empty_world.launch" />
+
+
+    <node name="spawn_robot" ns="powerline" pkg="gazebo_ros" type="spawn_model" args="-file $(find power_line_simulation)/urdf/powerline.urdf.xacro -urdf -model powerline -x $(arg power_line_x) -y $(arg power_line_y) -z 0.5 -Y $(arg power_line_yaw)" respawn="false" output="screen" />
+
+    <node name="spawn_robot_2" ns="powerline" pkg="gazebo_ros" type="spawn_model" args="-file $(find power_line_simulation)/urdf/powerline_2.urdf.xacro -urdf -model powerline_2 -x $(arg power_line_x_2) -y $(arg power_line_y_2) -z 0.5 -Y $(arg power_line_yaw_2)" respawn="false" output="screen" />
+
+
+  <node pkg="tf" type="static_transform_publisher" name="magnetometer0_pose" args="0 0 0 0.3 0 0 /base_link /magnetometer0 1000"/> 
+  <node pkg="tf" type="static_transform_publisher" name="magnetometer1_pose" args="0.2 0 0 0 0 0 /magnetometer0 /magnetometer1 1000"/> 
+  <node pkg="tf" type="static_transform_publisher" name="magnetometer2_pose" args="0.2 0 0 0 0 0 /magnetometer1 /magnetometer2 1000"/> 
+
+
+
+</launch>

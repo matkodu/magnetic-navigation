@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!--
+  Launch wit driver
+-->
+<launch>
+    <!-- launch an empty world -->
+    <include file="$(find gazebo_ros)/launch/empty_world.launch" />
+
+    <node name="spawn_robot" ns="powerline" pkg="gazebo_ros" type="spawn_model" args="-file $(find power_line_simulation)/urdf/powerline.urdf.xacro -urdf -model powerline -x 0 -z 0.1 -Y 1.57" respawn="false" output="screen" />
+<!--    <node name="stand1" ns="powerstand1" pkg="gazebo_ros" type="spawn_model" args="-file $(find power_line_simulation)/urdf/stand.urdf.xacro -urdf -model powerlinestand1 -x 0 -y 0  " respawn="false" output="screen" />
+    <node name="stand2" ns="powelinestand2" pkg="gazebo_ros" type="spawn_model" args="-file $(find power_line_simulation)/urdf/stand.urdf.xacro -urdf -model powerlinestand2 -x 1 -y 1  " respawn="false" output="screen" />
+-->
+</launch>
