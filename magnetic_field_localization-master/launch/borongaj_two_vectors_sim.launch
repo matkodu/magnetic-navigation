@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!--
+  Launch wit driver
+-->
+<launch>
+
+<!-- run node -->
+  <node name="magnetic_field_vector1" pkg="magnetic_field_localization" type="magnetic_field_vector_bor" output="screen">
+    <param name="magnetometer_frame" type="str" value="/magnetometer0" />
+    <param name="magnetometer_topic" type="str" value="/magnetic1" />
+    <param name="vector_topic" type="str" value="/magnetic_vector0" />
+    <param name="magnetic_field_frequency" type="int" value="50" />
+    <param name="number_of_points_for_analysis" type="int" value="50" />
+    <param name="number_of_cycles_for_analysis" type="int" value="1" />
+  </node>
+
+  <node name="magnetic_field_vector2" pkg="magnetic_field_localization" type="magnetic_field_vector_bor" output="screen">
+   <param name="magnetometer_frame" type="str" value="/magnetometer1" />
+    <param name="magnetometer_topic" type="str" value="/magnetic3" />
+    <param name="vector_topic" type="str" value="/magnetic_vector1" />
+    <param name="magnetic_field_frequency" type="int" value="50" />
+    <param name="number_of_points_for_analysis" type="int" value="50" />
+    <param name="number_of_cycles_for_analysis" type="int" value="1" />
+  </node>
+
+</launch>

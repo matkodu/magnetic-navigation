@@ -1,0 +1,8 @@
+#namespace: seabed
+topic_list: #- [topic_name, message_type(as per dictionary), variable_name in mat file
+ - [/rollD, std_msgs/Float64, roll]
+ - [/pitchD, std_msgs/Float64, pitch]
+ - [/yawD, std_msgs/Float64, yaw]
+ - [/yD, std_msgs/Float64, y]
+ - [/zD, std_msgs/Float64, z]
+

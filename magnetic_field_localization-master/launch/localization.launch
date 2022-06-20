@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!--
+  Launch localization
+-->
+<launch>
+  
+ <include file="$(find magnetic_field_localization)/launch/two_vectors.launch" />
+
+<!-- run node -->
+  <node name="magnetic_field_localization" pkg="magnetic_field_localization" type="magnetic_field_localization" output="screen">
+    <param name="magnetic_vector0" type="str" value="/magnetic_vector0" />
+    <param name="magnetic_vector1" type="str" value="/magnetic_vector1" />
+    <param name="vector0_frame" type="str" value="/magnetometer0" />
+    <param name="vector1_frame" type="str" value="/magnetometer1" />
+  </node>
+  <node pkg="tf" type="static_transform_publisher" name="cal1" args="0 0 0 0.4 0 -0.60 /magnetometer0 /magn1_cal 100"/> 
+  <node pkg="tf" type="static_transform_publisher" name="cal2" args="0 0 0 0.3 0 -0.6 /magnetometer1 /magn2_cal 100"/> 
+
+<!--  <node pkg="tf" type="static_transform_publisher" name="cal1" args="0 0 0 0.6 0 0.2 /magnetometer0 /magn1_cal 100"/> 
+  <node pkg="tf" type="static_transform_publisher" name="cal2" args="0 0 0 0.3 0 0 /magnetometer1 /magn2_cal 100"/> -->
+
+  <!--<node pkg="tf" type="static_transform_publisher" name="cal1" args="0 0 0 0 -0.45 0 /magnetometer0 /magn1_cal 100"/> 
+  <node pkg="tf" type="static_transform_publisher" name="cal2" args="0 0 0 0 -0.4 0 /magnetometer1 /magn2_cal 100"/> -->
+</launch>

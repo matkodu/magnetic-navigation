@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!--
+  Launch calculation of individual magnetic vectors
+-->
+<launch>
+  
+
+
+<!-- run node -->
+  <node name="magnetic_field_vector1" pkg="magnetic_field_localization" type="magnetic_field_vector" output="screen">
+    <param name="magnetometer_topic" type="str" value="/imu0/mag" />
+    <param name="vector_topic" type="str" value="/magnetic_vector0" />
+    <param name="magnetic_field_frequency" type="int" value="50" />
+    <param name="number_of_points_for_analysis" type="int" value="60" />
+    <param name="number_of_cycles_for_analysis" type="int" value="10" />
+  </node>
+
+  <node pkg="tf" type="static_transform_publisher" name="magnetometer_position" args="-0.197 0 0 0 0 0 /magnetometer0 /magnetometer1 100"/> 
+  <node pkg="tf" type="static_transform_publisher" name="magn" args="-0.167 -0.028 0 -1.5708 0 0 /ee_link /magnetometer0 100"/> 
+
+</launch>

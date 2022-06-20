@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+
+<launch>
+
+<!-- run node -->
+  <node name="orientation0" pkg="orientation" type="orientation" output="screen"> </node>
+ <!--
+  <node name="orientation1" pkg="orientation" type="orientation" output="screen"> </node>
+  <node name="orientation2" pkg="orientation" type="orientation" output="screen"> </node>
+  -->
+
+
+
+</launch>
